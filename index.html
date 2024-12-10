@@ -1,18 +1,19 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agenda de Contactos</title>
+    <title>Contact Book</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+            background-color: #F4F4F4; /* Light gray background */
+            color: #333; /* Default text color */
             margin: 0;
             padding: 0;
         }
         header {
-            background-color: #4CAF50;
+            background-color: #152550; /* Deep blue */
             color: white;
             text-align: center;
             padding: 15px 0;
@@ -29,19 +30,19 @@
             width: 100%;
             padding: 10px;
             margin: 8px 0;
-            border: 1px solid #ddd;
+            border: 1px solid #706B64; /* Muted brown/gray for borders */
             border-radius: 4px;
         }
         button {
             padding: 10px 20px;
-            background-color: #4CAF50;
+            background-color: #ff451A; /* Bright orange for buttons */
             color: white;
             border: none;
             border-radius: 4px;
             cursor: pointer;
         }
         button:hover {
-            background-color: #45a049;
+            background-color: #e64017; /* Darker shade of orange for hover */
         }
         ul {
             list-style-type: none;
@@ -53,57 +54,73 @@
             margin-bottom: 10px;
             border-radius: 4px;
         }
+        .contact-info {
+            margin-top: 20px;
+            font-size: 16px;
+        }
+        .contact-info a {
+            color: #ff451A; /* Bright orange for links */
+            text-decoration: none;
+        }
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
 
     <header>
-        <h1>Agenda de Contactos</h1>
+        <h1>Contact Book</h1>
     </header>
 
     <div class="container">
-        <h2>Agregar Nuevo Contacto</h2>
+        <h2>Add New Contact</h2>
         <form id="contactForm">
-            <label for="name">Nombre:</label>
+            <label for="name">Name:</label>
             <input type="text" id="name" name="name" required>
 
-            <label for="phone">Teléfono:</label>
+            <label for="phone">Phone:</label>
             <input type="tel" id="phone" name="phone" required>
 
-            <label for="email">Correo Electrónico:</label>
+            <label for="email">Email:</label>
             <input type="email" id="email" name="email" required>
 
-            <button type="submit">Agregar Contacto</button>
+            <button type="submit">Add Contact</button>
         </form>
 
-        <h3>Lista de Contactos</h3>
+        <h3>Contact List</h3>
         <ul id="contactList">
-            <!-- Aquí se agregarán los contactos -->
+            <!-- Contacts will be added here -->
         </ul>
+
+        <div class="contact-info">
+            <p>Need help? Contact us at:</p>
+            <p><a href="tel:+1234567890">Call +1 234-567-890</a></p>
+        </div>
     </div>
 
     <script>
-        // Obtener el formulario y la lista de contactos
+        // Get the form and the contact list
         const contactForm = document.getElementById('contactForm');
         const contactList = document.getElementById('contactList');
 
-        // Función para agregar el contacto a la lista
+        // Function to add the contact to the list
         contactForm.addEventListener('submit', function(event) {
-            event.preventDefault(); // Evita que la página se recargue
+            event.preventDefault(); // Prevent page reload
 
-            // Obtener los valores de los campos
+            // Get the values from the form fields
             const name = document.getElementById('name').value;
             const phone = document.getElementById('phone').value;
             const email = document.getElementById('email').value;
 
-            // Crear un nuevo elemento de lista
+            // Create a new list item
             const listItem = document.createElement('li');
-            listItem.innerHTML = `<strong>${name}</strong><br>Teléfono: ${phone}<br>Correo: ${email}`;
+            listItem.innerHTML = `<strong>${name}</strong><br>Phone: ${phone}<br>Email: ${email}`;
 
-            // Agregar el nuevo contacto a la lista
+            // Add the new contact to the list
             contactList.appendChild(listItem);
 
-            // Limpiar los campos del formulario
+            // Reset the form fields
             contactForm.reset();
         });
     </script>
