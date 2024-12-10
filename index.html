@@ -94,8 +94,9 @@
         </ul>
 
         <div class="contact-info">
-            <p>Need help? Contact us at:</p>
-            <p><a href="tel:+1234567890">Call +1 234-567-890</a></p>
+            <p>Need help? Better call Saul:</p>
+            <p><a href="tel:+1234567890">Contact Phone Number +34662942088</a></p>
+            <p>Email: <a href="mailto:carlos.landa@genesys.com">carlos.landa@genesys.com</a></p>
         </div>
     </div>
 
@@ -113,9 +114,9 @@
             const phone = document.getElementById('phone').value;
             const email = document.getElementById('email').value;
 
-            // Create a new list item
+            // Create a new list item with the phone number as a clickable "click-to-call" link and email as a "mailto" link
             const listItem = document.createElement('li');
-            listItem.innerHTML = `<strong>${name}</strong><br>Phone: ${phone}<br>Email: ${email}`;
+            listItem.innerHTML = `<strong>${name}</strong><br>Phone: <a href="tel:${phone}">${phone}</a><br>Email: <a href="mailto:${email}">${email}</a>`;
 
             // Add the new contact to the list
             contactList.appendChild(listItem);
