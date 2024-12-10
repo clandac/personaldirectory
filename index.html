@@ -65,6 +65,13 @@
         .contact-info a:hover {
             text-decoration: underline;
         }
+        .contact-buttons button {
+            margin-left: 10px;
+            background-color: #706B64; /* Muted color for edit/delete buttons */
+        }
+        .contact-buttons button:hover {
+            background-color: #5a4f46; /* Darker shade on hover */
+        }
     </style>
 </head>
 <body>
@@ -94,8 +101,8 @@
         </ul>
 
         <div class="contact-info">
-            <p>Need help? Better call Saul:</p>
-            <p><a href="tel:+1234567890">Contact Phone Number +34662942088</a></p>
+            <p>Need help? Better call Saul</p>
+            <p><a href="tel:+1234567890">Call +34662942088</a></p>
             <p>Email: <a href="mailto:carlos.landa@genesys.com">carlos.landa@genesys.com</a></p>
         </div>
     </div>
@@ -105,7 +112,7 @@
         const contactForm = document.getElementById('contactForm');
         const contactList = document.getElementById('contactList');
 
-        // Function to add the contact to the list
+        // Function to add a contact to the list
         contactForm.addEventListener('submit', function(event) {
             event.preventDefault(); // Prevent page reload
 
@@ -116,7 +123,15 @@
 
             // Create a new list item with the phone number as a clickable "click-to-call" link and email as a "mailto" link
             const listItem = document.createElement('li');
-            listItem.innerHTML = `<strong>${name}</strong><br>Phone: <a href="tel:${phone}">${phone}</a><br>Email: <a href="mailto:${email}">${email}</a>`;
+            listItem.innerHTML = `
+                <strong>${name}</strong><br>
+                Phone: <a href="tel:${phone}">${phone}</a><br>
+                Email: <a href="mailto:${email}">${email}</a>
+                <div class="contact-buttons">
+                    <button onclick="editContact(this)">Edit</button>
+                    <button onclick="deleteContact(this)">Delete</button>
+                </div>
+            `;
 
             // Add the new contact to the list
             contactList.appendChild(listItem);
@@ -124,6 +139,28 @@
             // Reset the form fields
             contactForm.reset();
         });
+
+        // Function to edit a contact
+        function editContact(button) {
+            const listItem = button.closest('li');
+            const name = listItem.querySelector('strong').textContent;
+            const phone = listItem.querySelector('a[href^="tel:"]').textContent;
+            const email = listItem.querySelector('a[href^="mailto:"]').textContent;
+
+            // Populate the form fields with current values
+            document.getElementById('name').value = name;
+            document.getElementById('phone').value = phone;
+            document.getElementById('email').value = email;
+
+            // Remove the contact from the list for updating
+            listItem.remove();
+        }
+
+        // Function to delete a contact
+        function deleteContact(button) {
+            const listItem = button.closest('li');
+            listItem.remove();
+        }
     </script>
 
 </body>
