@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agenda de Contactos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 15px 0;
+        }
+        .container {
+            width: 60%;
+            margin: 20px auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        input[type="text"], input[type="email"], input[type="tel"] {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            padding: 10px;
+            background-color: #f9f9f9;
+            margin-bottom: 10px;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Agenda de Contactos</h1>
+    </header>
+
+    <div class="container">
+        <h2>Agregar Nuevo Contacto</h2>
+        <form id="contactForm">
+            <label for="name">Nombre:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="phone">Teléfono:</label>
+            <input type="tel" id="phone" name="phone" required>
+
+            <label for="email">Correo Electrónico:</label>
+            <input type="email" id="email" name="email" required>
+
+            <button type="submit">Agregar Contacto</button>
+        </form>
+
+        <h3>Lista de Contactos</h3>
+        <ul id="contactList">
+            <!-- Aquí se agregarán los contactos -->
+        </ul>
+    </div>
+
+    <script>
+        // Obtener el formulario y la lista de contactos
+        const contactForm = document.getElementById('contactForm');
+        const contactList = document.getElementById('contactList');
+
+        // Función para agregar el contacto a la lista
+        contactForm.addEventListener('submit', function(event) {
+            event.preventDefault(); // Evita que la página se recargue
+
+            // Obtener los valores de los campos
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+            const email = document.getElementById('email').value;
+
+            // Crear un nuevo elemento de lista
+            const listItem = document.createElement('li');
+            listItem.innerHTML = `<strong>${name}</strong><br>Teléfono: ${phone}<br>Correo: ${email}`;
+
+            // Agregar el nuevo contacto a la lista
+            contactList.appendChild(listItem);
+
+            // Limpiar los campos del formulario
+            contactForm.reset();
+        });
+    </script>
+
+</body>
+</html>
